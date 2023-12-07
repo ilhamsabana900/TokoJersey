@@ -4,7 +4,8 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 Jersay<strong>Pedia</strong>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -15,21 +16,34 @@
                         <a class="nav-link" href="{{ route('home') }}">home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Jersay
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Jersay
                         </a>
                         <ul class="dropdown-menu">
                             @foreach ($ligas as $liga)
-                            <li><a class="dropdown-item" href="#">{{ $liga->nama }}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('products.liga', $liga->id) }}">{{ $liga->nama }}</a></li>
                             @endforeach
-                         <li><a class="dropdown-item" href="{{ route('products') }}">Semua Liga</a></li>
+                            <li><a class="dropdown-item" href="{{ route('products') }}">Semua Liga</a></li>
                         </ul>
-                      </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('history') }}">History</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('keranjang') }}">Keranjang
+                            <i class="fas fa-shopping-bag"></i>
+                            @if ($jumlah_pesanan !== 0)
+                                <span class="badge rounded-pill text-bg-danger">{{ $jumlah_pesanan }}</span>
+                            @endif
+                        </a>
+                    </li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -44,13 +58,14 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>

@@ -35,3 +35,22 @@ body{
 .btn-dark{
     border-radius: 8px;
 }
+
+h3 .btn{
+    float: right;
+}
+
+.gambar{
+    background-color: #cccccc;
+    border-width: 0px;
+    border-radius: 20px;
+}
+
+.gambarLiga{
+    background-color: transparent;
+}
+
+.btn-block{
+    width: 100%;
+}
+
